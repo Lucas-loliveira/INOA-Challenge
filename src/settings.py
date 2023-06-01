@@ -147,8 +147,8 @@ CELERY_IMPORTS = ("stocks.tasks",)
 BROKER_URL = "redis://cache:6379/0"
 RESULT_BACKEND = "redis://cache:6379/0"
 CELERYBEAT_SCHEDULE = {
-    "sample_task1": {
-        "task": "sample_task1",
-        "schedule": 50,
+    "task_get_stocks": {
+        "task": "task_get_stocks",
+        "schedule": 5,
     },
 }
