@@ -9,6 +9,11 @@ djangorestframework = "*"
 requests = "*"
 psycopg2-binary = "*"
 djangorestframework-simplejwt = "*"
+django-celery-beat = "*"
+django-celery-results = "*"
+python-decouple = "*"
+redis = "*"
+celery = "*"
 
 [dev-packages]
 black = "*"

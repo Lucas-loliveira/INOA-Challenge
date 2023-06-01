@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "user",
+    "stocks",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery settings
+CELERY_IMPORTS = ("stocks.tasks",)
+BROKER_URL = "redis://cache:6379/0"
+RESULT_BACKEND = "redis://cache:6379/0"
+CELERYBEAT_SCHEDULE = {
+    "sample_task1": {
+        "task": "sample_task1",
+        "schedule": 50,
+    },
+}
