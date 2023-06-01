@@ -24,7 +24,3 @@ class UserListView(generics.ListCreateAPIView):
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-
-class ObtainTokenPairWithUserView(TokenObtainPairView):
-    serializer_class = UserSerializer

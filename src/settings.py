@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "user",
     "stocks",
+    "stock_notifications",
     "django_celery_beat",
 ]
 
@@ -99,6 +100,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=365),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=365),
+    "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
 # Password validation
