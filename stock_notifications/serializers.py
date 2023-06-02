@@ -10,4 +10,4 @@ class StockNotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StockNotification
-        fields = "__all__"
+        exclude = ("last_notification",)
