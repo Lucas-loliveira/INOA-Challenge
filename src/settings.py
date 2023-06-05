@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%&v-x9b2)-gf@uvglu6_kn0_r2jere!14gjbl@lsbb*-i_t1v+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", 1))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -154,3 +155,16 @@ CELERYBEAT_SCHEDULE = {
         "schedule": 5,
     },
 }
+
+
+# Email settings
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = os.environ.get("EMAIL_HOST")
+    EMAIL_PORT = os.environ.get("EMAIL_PORT")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+    EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
