@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import mixins, viewsets
 
-# Create your views here.
+from .models import Stock
+from .serializers import StockSerializer
+
+
+class StockViewSet(
+    mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet
+):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer

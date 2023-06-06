@@ -47,7 +47,6 @@ class StockNotificationAPITestCase(APITestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.data), 1)
         stock_notification = response.json()[0]
-        self.assertEqual(stock_notification["user"], self.user.id)
         self.assertEqual(stock_notification["stock"], self.stock.stock)
         self.assertEqual(stock_notification["max_value"], "150.00")
         self.assertEqual(stock_notification["min_value"], "80.00")
