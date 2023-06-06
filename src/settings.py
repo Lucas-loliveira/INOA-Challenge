@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "stocks",
     "stock_notifications",
     "django_celery_beat",
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,15 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Bearer token',
+            'in': 'header'
+        }
+    }
+}

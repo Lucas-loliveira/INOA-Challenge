@@ -22,3 +22,6 @@ pre-commit = "*"
 
 [requires]
 python_version = "3.8"
+
+[packages.drf-yasg]
+extras = [ "validation",]
