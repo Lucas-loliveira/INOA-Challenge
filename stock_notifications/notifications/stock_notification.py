@@ -32,18 +32,18 @@ class StockNotificationSender:
 
             last_notification = notification.last_notification
 
-            if self.check_notification_interval(
+            if self.check_notification_can_be_send(
                 last_notification, notification.notification_interval_min
             ):
                 if self.send_email_notification(notification, current_stock_value):
                     notification.last_notification = timezone.now()
                     notification.save()
 
-    def check_notification_interval(
+    def check_notification_can_be_send(
         self, last_notification, notification_interval_min: int
     ) -> bool:
         if last_notification is None:
-            return False
+            return True
 
         interval_seconds = notification_interval_min * 60
         time_elapsed = timedelta.total_seconds(timezone.now() - last_notification)
@@ -53,9 +53,11 @@ class StockNotificationSender:
         self, notification: StockNotification, current_value: float
     ) -> bool:
         if current_value > notification.max_value:
+            reference_value = notification.max_value
             advice = "VENDER"
             notification_type = "excedeu o valor máximo"
         elif current_value < notification.min_value:
+            reference_value = notification.min_value
             advice = "COMPRAR"
             notification_type = "está abaixo do valor mínimo"
         else:
@@ -65,7 +67,7 @@ class StockNotificationSender:
         message = (
             f"Prezado(a) {notification.user.username},\n\n"
             f"A ação {notification.stock.stock} ({notification.stock.name}) {notification_type} "
-            f"de {notification.max_value}. O valor atual é {current_value}.\n\n"
+            f"de {reference_value}. O valor atual é {current_value}.\n\n"
             f"Recomendação: {advice}\n"
             f"Obrigado por utilizar o nosso serviço de notificação de ações.\n"
         )
