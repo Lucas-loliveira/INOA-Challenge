@@ -60,6 +60,13 @@ Documentação (OpenAPI)
 =====
 http://0.0.0.0:8000/docs/
 
+para os endpoints Stocks notificarion é necessario o JWT, então adicione o token atraves do botão Authorize e adicione o token no formato: 
+
+```bash
+$ Bearer *********************
+```
+
+
 Logs de emails enviados
 =====
 Por default, os emails são mostrados apenas no console, um historico de emails enviados pode ser encontrado no arquivo stock_emails.log
@@ -81,7 +88,7 @@ Stock Notification: Realiza as operações CRUD das notificações e utiliza um 
 
 Futuras melhorias
 =====
-* Melhorar a limitação do Django Signals: A solução proposta utiliza o Django Signals como gatilho para o envio de notificações. No entanto, dependendo da situação, a dependência da atualização das ações para o envio da notificação pode resultar em atrasos na entrega das notificações. Recomenda-se encontrar uma abordagem alternativa para garantir a entrega pontual das notificações, mesmo em casos em que o sistema precise aguardar um intervalo entre notificações.
+* Melhorar a limitação do Django Signals: A solução proposta utiliza o Django Signals como gatilho para o envio de notificações. No entanto, dependendo da situação, a dependência da atualização das ações para o envio da notificação pode resultar em atrasos na entrega das notificações. Recomenda-se encontrar uma abordagem alternativa para garantir a entrega pontual das notificações, mesmo em casos em que o sistema precise aguardar um intervalo entre notificações. Uma solução seria 
 
 * Adicionar paginação à listagem de Stocks: É importante implementar a funcionalidade de paginação na listagem de ações (Stocks), para evitar a sobrecarga de dados em uma única página. Isso melhorará a usabilidade e a performance do sistema, permitindo que os usuários naveguem pelos resultados de forma mais eficiente.
 
