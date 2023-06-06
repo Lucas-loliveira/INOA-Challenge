@@ -15,7 +15,6 @@ class BrapiAPIClient:
         )
 
     def get_stocks(self):
-        breakpoint()
         try:
             response = requests.get(self.url)
         except ConnectionError:
